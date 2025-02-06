@@ -10,31 +10,31 @@
 	import Hair from './hair/hair.svelte';
 	import { genConfig } from './utils.js';
 	import Eyes from './eyes/eyes.svelte';
+	import type { AvatarConfig } from './types.js';
 
 	let {
 		class: className,
 		id,
 		shape = 'circle',
-		hairColorRandom = false
+		hairColorRandom = false,
+		configOrSeed
 	}: {
 		class?: string;
 		id?: string;
 		shape?: 'circle' | 'rounded' | 'square';
 		hairColorRandom?: boolean;
+		configOrSeed?: AvatarConfig | string;
 	} = $props();
 
-	let config = genConfig({});
+	let config = genConfig(configOrSeed || {});
 
 	let borderRadius = (() => {
 		switch (shape) {
-			case 'circle':
-				return '100%';
-
 			case 'rounded':
 				return '6px';
-
 			case 'square':
 				return 0;
+			case 'circle':
 			default:
 				return '100%';
 		}
@@ -56,7 +56,7 @@
 			{/if}
 
 			<div
-				style="position: absolute; right: -3%; top:30%; width: 100%: height: 100%; display: flex; flex-direction: column; align-items:center; justify-content:center;"
+				style="position: absolute; right: -3%; top:30%; width: 100%; height: 100%; display: flex; flex-direction: column; align-items:center; justify-content:center;"
 			>
 				<Eyebrow style={config.eyeBrowStyle} />
 				<Eyes style={config.eyeStyle} />
