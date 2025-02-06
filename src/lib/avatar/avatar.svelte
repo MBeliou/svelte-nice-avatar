@@ -44,7 +44,7 @@
 <div
 	{id}
 	class={className}
-	style="background: {config.bgColor}; overflow: hidden; borderRadius: {borderRadius};"
+	style="background: {config.bgColor}; overflow: hidden; border-radius: {borderRadius};"
 >
 	<div style="position: relative; width: 100%; height: 100%;">
 		<div style="position: absolute; bottom: 0; width: 100%; height: 90%;">
